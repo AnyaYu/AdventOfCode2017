@@ -61,6 +61,4 @@ fun main(args: Array<String>) {
     }
 
     println(sums.find { it>const })
-    println(sums.find { it>const })
-
 }
