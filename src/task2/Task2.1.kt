@@ -14,19 +14,22 @@ fun main(args: Array<String>) {
 //2.1
 fun getCheckSum(lists: List<List<Int>>): Int {
     return  lists
-            .map { it.max()!!.minus(it.min()!!) }
-            .sum()
+            .sumBy { it.max()!! - it.min()!! }
 
 }
 
 //2.2
-fun getCheckSum2(lists: List<List<Int>>): Int {
-    val result = mutableListOf<Int>()
-    lists.forEach { l ->
+fun getCheckSum2(lists: List<List<Int>>): Int =
+    lists
+            .sumBy { getDivisibleList(it).sum() }
+
+
+    fun getDivisibleList(l: List<Int>): MutableList<Int> {
+        val result = mutableListOf<Int>()
+
         l.indices.forEach { index ->
             l.forEach { if (l[index]%it==0 && l[index]!=it)result.add(l[index]/it)}
         }
-    }
-    return  result.sum()
+        return  result
 
-}
+    }
